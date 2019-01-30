@@ -1,11 +1,9 @@
 package com.ben.project.PetShop;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Animals {
 
     private int id;
+
     private String name;
     private int große;
 
