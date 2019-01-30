@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 public class Animals {
 
     private int id;
-
     private String name;
     private int große;
 
