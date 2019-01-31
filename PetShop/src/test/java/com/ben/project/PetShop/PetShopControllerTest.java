@@ -10,14 +10,22 @@ public class PetShopControllerTest {
     @Test
     public void testGetNameById2() {
         PetShopController ps = new PetShopController();
-        String result = ps.getAnimalsById(1);
-        Assertions.assertThat(result).isEqualTo("Bijou");
+        Animals result = ps.getAnimalsById(2);
+        Assertions.assertThat(result).isEqualTo(new Animals(2, "Milou", 60));
     }
 
     @Test
-    public void testGetNameById45() {
+    public void testGetNameById42() {
         PetShopController psc = new PetShopController();
-        String result = psc.getAnimalsById(42);
+        Animals result = psc.getAnimalsById(42);
         Assertions.assertThat(result).isEqualTo(null);
     }
+
+    @Test
+    public void testPostMethode() {
+        PetShopController ptc = new PetShopController();
+        Animals ani = ptc.changeAnimalId(2, 8);
+        Assertions.assertThat(ani).isEqualTo(new Animals(8, "Milou", 60));
+    }
+
 }

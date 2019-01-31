@@ -36,4 +36,31 @@ public class Animals {
     public void setGroße(int große) {
         this.große = große;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == null || obj == null) {
+            return false;
+        } else if (this.getClass() == obj.getClass()) {
+            if ((this.id == ((Animals) obj).id) && ((this.name == ((Animals) obj).name) && (this.große == ((Animals) obj).große))) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hc = 17;
+        int hashMultiplier = 59;
+        hc = hc * hashMultiplier + ((this == null) ? 0 : this.id);
+        return hc;
+    }
+
+    public String getAninmals() {
+        return "Id = " + this.id + "\rName = " + this.name + "\rGröße = " + this.große;
+    }
 }
