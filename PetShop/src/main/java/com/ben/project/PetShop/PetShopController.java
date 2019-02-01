@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class PetShopController {
 
     private List<Animals> listAnimals = new ArrayList<>(Arrays.asList(new Animals(1, "Bijou", 25), new Animals(2, "Milou", 60), new Animals(3, "Ragou", 70)));
-
+    private List<Kunde> listKunde = new ArrayList<>(Arrays.asList(new Kunde("Marina", 12, "Helvetik Straße 45"), new Kunde("Milou", 60, "Buschhöhe 2"), new Kunde("Ragou", 70,"Horn Lehe 78")));
+    
     @GetMapping("/Animals/{id}")
     public Animals getAnimalsById(@PathVariable int id) {
         for (int j = 0; j < listAnimals.size(); j++) {
@@ -45,5 +46,15 @@ public class PetShopController {
     @PostMapping("/Animals")
     public void addAnimal(@RequestBody Animals identifier) {
         listAnimals.add(identifier);
+    }
+    
+    @GetMapping("/Kunde/{name}")
+    public Kunde getKundeByName(@PathVariable String name) {
+        for (int j = 0; j < listAnimals.size(); j++) {
+            if (name.equals(listAnimals.get(j).getName())) {
+                return listKunde.get(j);
+            }
+        }
+        return null;
     }
 }
