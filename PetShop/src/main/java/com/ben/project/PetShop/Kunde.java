@@ -31,4 +31,24 @@ public class Kunde {
     public void setkAnschrift(String kAnschrift) {
         this.kAnschrift = kAnschrift;
     } 
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == null || obj == null) {
+            return false;
+        } else if (this.getClass() == obj.getClass()) {
+            if ((this.kNr == ((Kunde) obj).kNr) && ((this.kName == ((Kunde) obj).kName) && (this.kAnschrift== ((Kunde) obj).kAnschrift))) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return this.kNr;
+    }
 }

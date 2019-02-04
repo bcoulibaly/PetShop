@@ -43,18 +43,23 @@ public class PetShopController {
         return null;
     }
 
-    @PostMapping("/Animals")
-    public void addAnimal(@RequestBody Animals identifier) {
-        listAnimals.add(identifier);
+    @PostMapping("/addAnimals")
+    public void addAnimal(@RequestBody Animals newAnimal) {
+        listAnimals.add(newAnimal);
     }
     
     @GetMapping("/Kunde/{name}")
     public Kunde getKundeByName(@PathVariable String name) {
-        for (int j = 0; j < listAnimals.size(); j++) {
-            if (name.equals(listAnimals.get(j).getName())) {
+        for (int j = 0; j < listKunde.size(); j++) {
+            if (name.equals(listKunde.get(j).getkName())) {
                 return listKunde.get(j);
             }
         }
         return null;
+    }
+    
+    @PostMapping("/addKunde/")
+    public void addKunde(@RequestBody Kunde newKunde) {
+        listKunde.add(newKunde);
     }
 }
