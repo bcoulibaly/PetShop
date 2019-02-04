@@ -3,7 +3,6 @@ package com.ben.project.PetShop;
 public class Animals {
 
     private int id;
-
     private String name;
     private int große;
 
@@ -58,9 +57,5 @@ public class Animals {
         int hashMultiplier = 59;
         hc = hc * hashMultiplier + ((this == null) ? 0 : this.id);
         return hc;
-    }
-
-    public String getAninmals() {
-        return "Id = " + this.id + "\rName = " + this.name + "\rGröße = " + this.große;
     }
 }
