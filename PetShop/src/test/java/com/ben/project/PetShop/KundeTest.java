@@ -10,8 +10,9 @@ public class KundeTest {
     @Test
     public void testGetKunde() {
         PetShopController pt = new PetShopController();
-        Kunde value = pt.getKundeByName("Marina");
-        Assertions.assertThat(value.equals(new Kunde("Marina", 12, "Helvetik Straße 45"))).isEqualTo(true);
+        Assertions.assertThat(new Kunde("Marina", 12, "Helvetik Straße 45").equals(new Kunde("Marina", 12, "Helvetik Straße 45"))).isEqualTo(true);
     }
+    
+    
 
 }
