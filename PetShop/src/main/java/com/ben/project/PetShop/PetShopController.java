@@ -67,13 +67,14 @@ public class PetShopController {
         cService.getKundeList().add(newKunde);
     }
 
-    @GetMapping("/")
+    @GetMapping("/Kunde")
     public ArrayList<Kunde> getAllKunde() {
         return cService.getKundeList();
     }
 
-    public void shop(Kunde kundeName, String animalName) {
-        kundeName.getKundeAnimal().add(getAnimalsByName(animalName));
+    @PostMapping("/Kunde/{kundeName}/addAnimal/{animalName}")
+    public void shop(@PathVariable String kundeName, String animalName) {
+        this.getKundeByName(kundeName).getKundeAnimal().add(getAnimalsByName(animalName));
     }
 
     public ArrayList<Animals> getKundeAnimals(Kunde kunde) {
