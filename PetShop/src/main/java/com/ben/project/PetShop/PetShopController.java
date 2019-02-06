@@ -19,26 +19,20 @@ public class PetShopController {
         this.cService = service;
     }
 
-    @GetMapping("/Animals/{id}")
-    public Animals getAnimalsById(@PathVariable int id) {
-        for (int j = 0; j < cService.getAnimalList().size(); j++) {
-            Animals tmpAnimal = cService.getAnimalList().get(j);
-            if (id == tmpAnimal.getId()) {
-                return tmpAnimal;
-            }
-        }
-        return null;
-    }
-
     @GetMapping("/Animal/{name}")
-    public Animals getAnimalsByName(@PathVariable String name) {
+    public Animals getAnimalsByName(@PathVariable String name) throws Exception {
+        Animals animal = null;
         for (int j = 0; j < cService.getAnimalList().size(); j++) {
-            Animals tmpAnimal = cService.getAnimalList().get(j);
-            if (name.equals(tmpAnimal.getName())) {
-                return tmpAnimal;
+            Animals tmpAnimals = cService.getAnimalList().get(j);
+            if (name.equals(tmpAnimals.getName())) {
+                animal = tmpAnimals;
             }
         }
-        return null;
+        if (animal != null) {
+            return animal;
+        } else {
+            throw new Exception("Tier konnte nicht gefunden werden");
+        }
     }
 
     @GetMapping("/Animals/")
@@ -52,14 +46,21 @@ public class PetShopController {
     }
 
     @GetMapping("/Kunde/{name}")
-    public Kunde getKundeByName(@PathVariable String name) {
+    public Kunde getKundeByName(@PathVariable String name) throws Exception {
+
+        Kunde tmpKunde = null;
         for (int j = 0; j < cService.getKundeList().size(); j++) {
-            Kunde tmpkunde = cService.getKundeList().get(j);
-            if (name.equals(tmpkunde.getkName())) {
-                return tmpkunde;
+            tmpKunde = cService.getKundeList().get(j);
+            if (name.equals(tmpKunde.getkName())) {
+                break;
             }
         }
-        return null;
+
+        if (tmpKunde != null) {
+            return tmpKunde;
+        } else {
+            throw new Exception("Kunde konnte nicht gefunden werden");
+        }
     }
 
     @PostMapping("/addKunde")
@@ -72,13 +73,18 @@ public class PetShopController {
         return cService.getKundeList();
     }
 
-    @PostMapping("/Kunde/{kundeName}/addAnimal/{animalName}")
-    public void shop(@PathVariable String kundeName, String animalName) {
+    public void shop(@PathVariable String kundeName, String animalName) throws Exception {
         this.getKundeByName(kundeName).getKundeAnimal().add(getAnimalsByName(animalName));
     }
 
-    public ArrayList<Animals> getKundeAnimals(Kunde kunde) {
-        return kunde.getKundeAnimal();
+    @GetMapping("/kunde/{kundeName}/animalListe")
+    public ArrayList<Animals> getKundeAnimals(String kundeName) throws Exception {
+        Kunde tmpKunde = getKundeByName(kundeName);
+        if (tmpKunde != null) {
+            return tmpKunde.getKundeAnimal();
+        } else {
+            throw new Exception("Kunde konnte nicht gefunden werden");
+        }
     }
 
 }

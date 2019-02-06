@@ -4,18 +4,15 @@ import org.junit.Test;
 import org.springframework.boot.test.context.TestComponent;
 
 @TestComponent
-public class KundeTest {
+public class ControllerServiceTest {
 
     @Test
-    public void testIntitKundeList() {
+    public void testControllerServiceAnimal() {
+
     }
 
     @Test
-    public void testGetKunde() {
-    }
+    public void testControllerServiceKunde() {
 
-    @Test
-    public void testGetKundeFalse() {
     }
-
 }

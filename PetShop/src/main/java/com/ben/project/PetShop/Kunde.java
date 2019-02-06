@@ -2,18 +2,34 @@ package com.ben.project.PetShop;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "Kunde")
 public class Kunde {
 
+    @Id
+    @Type(type = "int")
+    @Column(name = "ID")
+    private int kId;
+
+    @Column(name = "Name")
+    @Type(type = "string")
     private String kName;
-    private int kNr;
+
+    @Column(name = "Anschrift")
+    @Type(type = "string")
     private String kAnschrift;
+
+    // @Column(name = "Tiere")
     private ArrayList<Animals> kundeAnimals;
 
-    Kunde(String name, int kundeNr, String anschrift) {
-        this.kName = name;
-        this.kNr = kundeNr;
-        this.kAnschrift = anschrift;
-        this.setKundeAnimals(new ArrayList<Animals>());
+    Kunde() {
     }
 
     public String getkName() {
@@ -25,11 +41,11 @@ public class Kunde {
     }
 
     public int getkNr() {
-        return kNr;
+        return kId;
     }
 
-    public void setkNr(int kNr) {
-        this.kNr = kNr;
+    public void setkNr(int kId) {
+        this.kId = kId;
     }
 
     public String getkAnschrift() {
@@ -45,7 +61,7 @@ public class Kunde {
         if (this == null || obj == null) {
             return false;
         } else if (this.getClass() == obj.getClass()) {
-            if ((this.kNr == ((Kunde) obj).kNr) && ((this.kName == ((Kunde) obj).kName) && (this.kAnschrift == ((Kunde) obj).kAnschrift))) {
+            if ((this.kId == ((Kunde) obj).kId) && ((this.kName == ((Kunde) obj).kName) && (this.kAnschrift == ((Kunde) obj).kAnschrift))) {
                 return true;
             } else {
                 return false;
@@ -57,7 +73,7 @@ public class Kunde {
 
     @Override
     public int hashCode() {
-        return this.kNr;
+        return this.kId;
     }
 
     public ArrayList<Animals> getKundeAnimal() {
