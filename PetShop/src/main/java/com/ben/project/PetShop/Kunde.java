@@ -15,7 +15,7 @@ public class Kunde {
 
     @Id
     @Type(type = "int")
-    @Column(name = "ID")
+    @Column(name = "Id")
     private int kId;
 
     @Column(name = "Name")

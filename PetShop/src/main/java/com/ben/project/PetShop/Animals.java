@@ -13,7 +13,7 @@ public class Animals {
 
     @Id
     @Type(type = "int")
-    @Column(name = "ID")
+    @Column(name = "Id")
     private int id;
 
     @Column(name = "Name")
