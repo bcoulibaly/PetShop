@@ -2,15 +2,12 @@ package com.ben.project.PetShop;
 
 import java.util.ArrayList;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "Kunde")
+@Table(name = "KUNDE")
 public class Kunde {
 
     @Id
