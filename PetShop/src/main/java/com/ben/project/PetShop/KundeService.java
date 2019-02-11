@@ -12,7 +12,6 @@ public class KundeService {
     private ArrayList<Kunde> listAllKunde;
 
     public KundeService() {
-            
     }
 
     public ArrayList<Kunde> getAllKunde() {
@@ -33,13 +32,7 @@ public class KundeService {
     }
     
     public Kunde getKundeById(int kundeId) throws Exception {
-        Kunde kunde = null;
-        for (int i = 0; i < listAllKunde.size(); i++) {
-            kunde = listAllKunde.get(i);
-            if (kundeId == kunde.getkNr()) {
-                return kunde;
-            }
-        }
+        Kunde kunde = kundenRepo.getOne(kundeId);
         if (kunde != null) {
             return kunde;
         }
@@ -47,14 +40,13 @@ public class KundeService {
     }
     
     public String addKunde(int id, String name, String anschrift) {
+        
         Kunde kunde = new Kunde();
         kunde.setkNr(id);
         kunde.setkName(name);
         kunde.setkAnschrift(anschrift);
-        
-        listAllKunde.add(kunde);
+
         kundenRepo.saveAndFlush(kunde);
-        
         if (kundenRepo.findAll().contains(kunde)) {
             return "SUCCESS";
         }

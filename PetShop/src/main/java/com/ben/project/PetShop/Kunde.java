@@ -4,26 +4,22 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "KUNDE")
+@Table(name = "kunde")
 public class Kunde {
 
     @Id
-    @Type(type = "int")
-    @Column(name = "Id")
+    @Column(name = "id")
     private int kId;
 
-    @Column(name = "Name")
-    @Type(type = "string")
+    @Column(name = "name")
     private String kName;
 
-    @Column(name = "Anschrift")
-    @Type(type = "string")
+    @Column(name = "anschrift")
     private String kAnschrift;
 
-    // @Column(name = "Tiere")
+    // @Column(name = "Tier")
     private ArrayList<Animals> kundeAnimals;
 
     Kunde() {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="h2_embedded-168cda3843d-2ef88ef0a7509353" provider="generic" driver="h2_embedded" name="H2 - kundenDB" save-password="true" read-only="false">
+		<connection server="" database="kundenDB" url="jdbc:h2:kundenDB" user="ben" password="EQEIQKA=" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
