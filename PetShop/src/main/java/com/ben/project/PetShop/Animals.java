@@ -5,23 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
 @Entity
 @Table(name = "Animal")
 public class Animals {
 
     @Id
-    @Type(type = "int")
     @Column(name = "Id")
     private int id;
 
     @Column(name = "Name")
-    @Type(type = "string")
     private String name;
 
     @Column(name = "Größe")
-    @Type(type = "int")
     private int große;
 
     public Animals() {

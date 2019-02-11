@@ -1,9 +1,9 @@
 package com.ben.project.PetShop;
 
-import java.util.ArrayList;
-
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "kunde")
@@ -18,9 +18,6 @@ public class Kunde {
 
     @Column(name = "anschrift")
     private String kAnschrift;
-
-    // @Column(name = "Tier")
-    private ArrayList<Animals> kundeAnimals;
 
     Kunde() {
     }
@@ -67,13 +64,5 @@ public class Kunde {
     @Override
     public int hashCode() {
         return this.kId;
-    }
-
-    public ArrayList<Animals> getKundeAnimal() {
-        return kundeAnimals;
-    }
-
-    public void setKundeAnimals(ArrayList<Animals> kundeAnimals) {
-        this.kundeAnimals = kundeAnimals;
     }
 }

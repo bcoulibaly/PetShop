@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class KundeService {
-    
-    private KundenRepository kundenRepo;
-    private ArrayList<Kunde> listAllKunde;
 
-    public KundeService() {
+    private KundenRepository kundenRepo;
+
+    public KundeService(KundenRepository kundenRepo) {
+        this.setKudnenRepo(kundenRepo);
     }
 
     public ArrayList<Kunde> getAllKunde() {
@@ -19,37 +19,31 @@ public class KundeService {
     }
 
     @Autowired
-    public void setKudnenRepo(KundenRepository kundeRepo) {
-        this.kundenRepo = kundeRepo;
-    }
-    
-    public ArrayList<Kunde> getListAllKunde() {
-        return listAllKunde;
+    public void setKudnenRepo(KundenRepository kundenRepo) {
+        this.kundenRepo = kundenRepo;
     }
 
-    public void setListAllKunde(ArrayList<Kunde> listAllKunde) {
-        this.listAllKunde = listAllKunde;
-    }
-    
     public Kunde getKundeById(int kundeId) throws Exception {
         Kunde kunde = kundenRepo.getOne(kundeId);
         if (kunde != null) {
             return kunde;
+        } else {
+            return null;
         }
-        else throw new Exception("Kunde nicht gefunden !!!") ;
     }
-    
-    public String addKunde(int id, String name, String anschrift) {
-        
+
+    public Kunde addKunde(int id, String name, String anschrift) {
+
         Kunde kunde = new Kunde();
         kunde.setkNr(id);
         kunde.setkName(name);
         kunde.setkAnschrift(anschrift);
 
-        kundenRepo.saveAndFlush(kunde);
+        kundenRepo.save(kunde);
         if (kundenRepo.findAll().contains(kunde)) {
-            return "SUCCESS";
+            return kunde;
+        } else {
+            return null;
         }
-        else return "FAILED"; 
     }
 }
