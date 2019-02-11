@@ -1,0 +1,1 @@
+insert into Kunde (id, name, anschrift) values (1, 'Egbert','Walle Heerstr.56');
