@@ -7,43 +7,43 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "kunde")
-public class Kunde {
+public class Client {
 
     @Id
     @Column(name = "id")
-    private int kId;
+    private int id;
 
     @Column(name = "name")
-    private String kName;
+    private String name;
 
     @Column(name = "anschrift")
-    private String kAnschrift;
+    private String anschrift;
 
-    Kunde() {
+    Client() {
     }
 
-    public String getkName() {
-        return kName;
+    public String getName() {
+        return name;
     }
 
-    public void setkName(String kName) {
-        this.kName = kName;
+    public void setName(String kName) {
+        this.name = kName;
     }
 
-    public int getkNr() {
-        return kId;
+    public int getId() {
+        return id;
     }
 
-    public void setkNr(int kId) {
-        this.kId = kId;
+    public void setId(int kId) {
+        this.id = kId;
     }
 
-    public String getkAnschrift() {
-        return kAnschrift;
+    public String getAnschrift() {
+        return anschrift;
     }
 
-    public void setkAnschrift(String kAnschrift) {
-        this.kAnschrift = kAnschrift;
+    public void setAnschrift(String kAnschrift) {
+        this.anschrift = kAnschrift;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Kunde {
         if (this == null || obj == null) {
             return false;
         } else if (this.getClass() == obj.getClass()) {
-            if ((this.kId == ((Kunde) obj).kId) && ((this.kName == ((Kunde) obj).kName) && (this.kAnschrift == ((Kunde) obj).kAnschrift))) {
+            if ((this.id == ((Client) obj).id) && ((this.name == ((Client) obj).name) && (this.anschrift == ((Client) obj).anschrift))) {
                 return true;
             } else {
                 return false;
@@ -63,6 +63,6 @@ public class Kunde {
 
     @Override
     public int hashCode() {
-        return this.kId;
+        return this.id;
     }
 }

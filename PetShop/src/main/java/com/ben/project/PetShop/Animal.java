@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Animal")
-public class Animals {
+public class Animal {
 
     @Id
     @Column(name = "Id")
@@ -19,7 +19,7 @@ public class Animals {
     @Column(name = "Größe")
     private int große;
 
-    public Animals() {
+    public Animal() {
     }
 
     public String getName() {
@@ -51,7 +51,7 @@ public class Animals {
         if (this == null || obj == null) {
             return false;
         } else if (this.getClass() == obj.getClass()) {
-            if ((this.id == ((Animals) obj).id) && ((this.name == ((Animals) obj).name) && (this.große == ((Animals) obj).große))) {
+            if ((this.id == ((Animal) obj).id) && ((this.name == ((Animal) obj).name) && (this.große == ((Animal) obj).große))) {
                 return true;
             } else {
                 return false;

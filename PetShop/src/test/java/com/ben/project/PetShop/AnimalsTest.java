@@ -11,7 +11,7 @@ public class AnimalsTest {
 
     @Test
     public void testGetKunde() {
-        Animals testAnimal = new Animals();
+        Animal testAnimal = new Animal();
         testAnimal.setId(2);
         testAnimal.setName("Hai");
         testAnimal.setGroße(150);
@@ -23,12 +23,12 @@ public class AnimalsTest {
     @Test
     public void testEqualsMethode() {
 
-        Animals testAnimal = new Animals();
+        Animal testAnimal = new Animal();
         testAnimal.setId(2);
         testAnimal.setName("Hai");
         testAnimal.setGroße(150);
 
-        Animals testAnimal2 = new Animals();
+        Animal testAnimal2 = new Animal();
         testAnimal2.setId(2);
         testAnimal2.setName("Hai");
         testAnimal2.setGroße(150);
