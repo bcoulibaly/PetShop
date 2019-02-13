@@ -1,8 +1,11 @@
 package com.ben.project.PetShop;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,9 @@ public class Animal {
 
     @Column(name = "Größe")
     private int große;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    Client owner;
 
     public Animal() {
     }
@@ -44,6 +50,15 @@ public class Animal {
 
     public void setGroße(int große) {
         this.große = große;
+    }
+
+    @JoinColumn(name = "id")
+    public Client getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
     }
 
     @Override

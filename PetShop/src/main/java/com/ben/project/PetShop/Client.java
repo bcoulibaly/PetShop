@@ -1,8 +1,12 @@
 package com.ben.project.PetShop;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,9 @@ public class Client {
 
     @Column(name = "anschrift")
     private String anschrift;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Animal> animals;
 
     Client() {
     }
@@ -44,6 +51,14 @@ public class Client {
 
     public void setAnschrift(String kAnschrift) {
         this.anschrift = kAnschrift;
+    }
+
+    public List<Animal> getAnimals() {
+        return this.animals;
+    }
+
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
     }
 
     @Override

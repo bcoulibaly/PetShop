@@ -34,7 +34,7 @@ public class ClientControllerTest {
 
         when(clientService.getClientById(1)).thenReturn(client);
 
-        Client client2 = clientCntrl.getClientById(1);
+        ClientDTO client2 = clientCntrl.getClientById(1);
         assertThat(client).isEqualTo(client2);
     }
 

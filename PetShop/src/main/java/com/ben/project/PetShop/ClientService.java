@@ -3,7 +3,9 @@ package com.ben.project.PetShop;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class ClientService {
 
@@ -25,4 +27,12 @@ public class ClientService {
         return clientRepo.save(client);
     }
 
+    public Client addAnimalToClient(int idClient, Animal animal) {
+        Client tmpClient = clientRepo.findById(idClient).get();
+        animal.setOwner(tmpClient);
+        tmpClient.getAnimals().add(animal);
+
+        clientRepo.saveAndFlush(tmpClient);
+        return tmpClient;
+    }
 }
