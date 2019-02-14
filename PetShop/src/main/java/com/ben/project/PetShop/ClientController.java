@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
 
     private ClientService clientService;
+    private AnimalController animalController;
 
-    public ClientController(ClientService kundeService) {
+    public ClientController(ClientService kundeService, AnimalController animalController) {
         this.clientService = kundeService;
+        this.animalController = animalController;
     }
 
     @GetMapping("/{clientId}")
@@ -48,12 +50,12 @@ public class ClientController {
     }
 
     @GetMapping()
-    public List<ClientDTO> getAllClient() throws Exception {
+    public ArrayList<ClientDTO> getAllClient() throws Exception {
 
         List<Client> clientEntityList = clientService.getAllClient();
 
         if (clientEntityList != null) {
-            List<ClientDTO> clientDtoList = new ArrayList<ClientDTO>();
+            ArrayList<ClientDTO> clientDtoList = new ArrayList<ClientDTO>();
             for (Client client : clientEntityList) {
                 clientDtoList.add(convertToClientDTO(client));
             }
@@ -65,9 +67,11 @@ public class ClientController {
 
     @PutMapping("/{id}")
     public ClientDTO addAnimalToClient(@PathVariable int id, @RequestBody AnimalDTO animalDto) throws Exception {
-        Animal animalEntity = convertToAnimalEntity(animalDto);
 
-        return convertToClientDTO(clientService.addAnimalToClient(id, animalEntity));
+        Animal animalEntity = convertToAnimalEntity(animalController.getAnimalById(animalDto.getId()));
+        ClientDTO clientDto = convertToClientDTO(clientService.addAnimalToClient(id, animalEntity));
+
+        return clientDto;
     }
 
     public Client convertToClientEntity(ClientDTO clientDTO) {
@@ -76,7 +80,7 @@ public class ClientController {
         clientEntity.setId(clientDTO.getId());
         clientEntity.setName(clientDTO.getName());
         clientEntity.setAnschrift(clientDTO.getAnschrift());
-        clientEntity.setAnimals(clientDTO.getAnimals());
+        clientEntity.setAnimals(convertToAnimalsList(clientDTO.getAnimals()));
 
         return clientEntity;
     }
@@ -87,27 +91,48 @@ public class ClientController {
         clientDto.setId(clientEntity.getId());
         clientDto.setName(clientEntity.getName());
         clientDto.setAnschrift(clientEntity.getAnschrift());
-        clientDto.setAnimals(clientEntity.getAnimals());
+        clientDto.setAnimals(convertToAnimalsDTOList(clientEntity.getAnimals(), clientDto.getId()));
 
         return clientDto;
     }
 
-    public AnimalDTO convertToAnimalDTO(Animal animalEntity) {
+    public AnimalDTO convertToAnimalDTO(Animal animalEntity, int i) {
 
-        AnimalDTO animalDto = new AnimalDTO();
-        animalDto.setId(animalEntity.getId());
-        animalDto.setName(animalEntity.getName());
-        animalDto.setGroße(animalEntity.getGroße());
+        AnimalDTO animalDto = animalController.convertToAnimalDTO(animalEntity);
+        animalDto.setOwner(i);
+
         return animalDto;
     }
 
     public Animal convertToAnimalEntity(AnimalDTO animalDto) {
-
-        Animal animalEntity = new Animal();
-        animalEntity.setId(animalDto.getId());
-        animalEntity.setName(animalDto.getName());
-        animalEntity.setGroße(animalDto.getGroße());
-        return animalEntity;
+        return animalController.convertToAnimalEntity(animalDto);
     }
 
+    public ArrayList<AnimalDTO> convertToAnimalsDTOList(List<Animal> animals, int i) {
+
+        if (animals != null) {
+            ArrayList<AnimalDTO> animalFormat = new ArrayList<AnimalDTO>();
+
+            for (Animal animal : animals) {
+                animalFormat.add(convertToAnimalDTO(animal, i));
+            }
+            return animalFormat;
+        } else {
+            return null;
+        }
+    }
+
+    public ArrayList<Animal> convertToAnimalsList(List<AnimalDTO> animals) {
+
+        if (animals != null) {
+            ArrayList<Animal> animalFormat = new ArrayList<Animal>();
+
+            for (AnimalDTO animal : animals) {
+                animalFormat.add(convertToAnimalEntity(animal));
+            }
+            return animalFormat;
+        } else {
+            return null;
+        }
+    }
 }

@@ -1,7 +1,5 @@
 package com.ben.project.PetShop;
 
-import javax.persistence.JoinColumn;
-
 public class AnimalDTO {
 
     private int id;
@@ -10,7 +8,7 @@ public class AnimalDTO {
 
     private int große;
 
-    Client owner;
+    private int owner_Id;
 
     public AnimalDTO() {
     }
@@ -39,12 +37,54 @@ public class AnimalDTO {
         this.große = große;
     }
 
-    @JoinColumn(name = "id")
-    public Client getOwner() {
-        return this.owner;
+    public int getOwner() {
+        return this.owner_Id;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setOwner(int owner_Id) {
+        this.owner_Id = owner_Id;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + große;
+        result = prime * result + id;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + owner_Id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        AnimalDTO other = (AnimalDTO) obj;
+        if (große != other.große) {
+            return false;
+        }
+        if (id != other.id) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (owner_Id != other.owner_Id) {
+            return false;
+        }
+        return true;
+    }
+
 }

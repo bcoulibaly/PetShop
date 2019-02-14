@@ -10,7 +10,7 @@ public class ClientDTO {
 
     private String anschrift;
 
-    private List<Animal> animals;
+    private List<AnimalDTO> animals;
 
     ClientDTO() {
     }
@@ -39,11 +39,11 @@ public class ClientDTO {
         this.anschrift = kAnschrift;
     }
 
-    public List<Animal> getAnimals() {
+    public List<AnimalDTO> getAnimals() {
         return this.animals;
     }
 
-    public void setAnimals(List<Animal> animals) {
+    public void setAnimals(List<AnimalDTO> animals) {
         this.animals = animals;
     }
 }

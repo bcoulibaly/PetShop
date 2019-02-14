@@ -3,9 +3,7 @@ package com.ben.project.PetShop;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 @Service
 public class ClientService {
 
